@@ -200,7 +200,8 @@ public class Main {
 		
 		
 		
-		
+		// aqui começa a etapa onde tem a condição de caso o usuário queira uma "bebidinha" kkkk
+		// essa etapa segue um processo bem semelhante ao o da pizza mas com as opções clicaveis sem precisar escrever o numero da bebida
 		
 		int scanBebidaYN = JOptionPane.showConfirmDialog(null, "Vai uma bebidinha?");
 		Object scanBebida = null;

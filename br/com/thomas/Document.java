@@ -1,6 +1,6 @@
 package br.com.thomas;
 
-import java.util.Scanner;
+
 import javax.swing.JOptionPane;
 
 

@@ -1,7 +1,7 @@
 package br.com.thomas;
 
 import java.util.Scanner;
-
+import java.util.Random;
 import javax.swing.JOptionPane;
 
 
@@ -82,10 +82,13 @@ public class Main {
 			tipo = "La carte";
 		}
 		
+		//criei aqui um objeto chamado aleatorio para depois setar ela na variaviel inteira codigo para gerar um numero para o atributo codigo
+		Random aleatorio = new Random();
+		int codigo = aleatorio.nextInt(301);
 		
 		//Depois das condições -> Acionar a classe pedido e por os atributos
 		// obs: agora usando a variavel tipo (tipo de pedido) que declarei antes 
-		Pedido pedido = new Pedido(1, tipo, cliente.getNome(), "", "não", "");
+		Pedido pedido = new Pedido(codigo, tipo, cliente.getNome(), "", "não", "");
 		
 		
 		
@@ -238,8 +241,8 @@ public class Main {
 		
 		
 		
-		
-		
+		//Aqui eu faço o mesmo esquema de swing, dessa vez com o show option que retorna um dado inteiro começando do 0 da esquerda pra direita
+		//e de acordo com a opção escolhida vai armazenar a escolha do tipo de pagamento na variavel pay
 		Object [ ] tipoPay = {"Pix", "Cartão de crédito", "Cartão de débito"};
 		int scanPay = JOptionPane.showOptionDialog(null, "Escolha a forma de pagamento", "Pizzaria", 0, 3, null, tipoPay, "" );
 		String pay = "";
@@ -250,19 +253,34 @@ public class Main {
 		} else if(scanPay==2) {
 			pay = "Cartão de débito";
 		}
+		
+		//o tipo de pagamento escolhido vai ser setado no atributo pagamento da classe pedido
 		pedido.setPagamento(pay);
 		
 		
-		
+		// após tudo isso uma janela vai abrir para informar o usuario que a compra irá continuar no console
 		Document.alert("Veja os dados do pedido no console e finalize a compra");
 		
+		
+		
+		// apartir daqui é tudo no console ->
 		Document.writee("\n\nDados do pedido:");
 		
+		
+		//Aqui será imprimido no console todos os dados do pedido e dependendo do tipo de pedido vai informar os do cliente também ->
+		
 		Document.writee("Código: "+ pedido.getCodigo());
+		
+		if(pedido.getTipo().equals("Delivery") || pedido.getTipo().equals("Retirada no Balcao")) {
 		Document.writee("Cliente: "+ pedido.getCliente());
-		Document.writee("Endereco: "+ cliente.getEndereco());
-		Document.writee("Telefone: "+ cliente.getNome());
-		Document.writee("Email: "+ cliente.getEmail());
+		}
+		
+		if(pedido.getTipo().equals("Delivery")) {
+			Document.writee("Endereco: "+ cliente.getEndereco());
+			Document.writee("Telefone: "+ cliente.getNome());
+			Document.writee("Email: "+ cliente.getEmail());
+		}	
+		
 		Document.writee("Tipo de Pedido: "+ pedido.getTipo());
 		Document.writee("Pizza: sabor "+ pedido.getPizza());
 		Document.writee("Bebida: "+ pedido.getBebida());
@@ -276,9 +294,14 @@ public class Main {
 			Document.writee("\n"+ pedido.getCliente() +"! Venha no balcao por favor!");
 		}
 		
+		// eu literalmente instanciei o scanner na ultima etapa do codigo kkkkkkkkkkkkkkk 
+		//só pra finalizar o pedido
+		
 		Scanner scanner = new Scanner(System.in);
 		String scanConfirm = null;
 		
+		//nessa ultima etapa o usuario tem que informar sim para confirmar o pedido ou não para cancelar ->
+		// após isso será comparado a resposta e nas condições e se ocorrer tudo certo o processo é finalizado com sucesso
 		while(scanConfirm == null) {
 			Document.writee("Confirme a compra -> digite \"sim\" para confirmar, \"nao\" para cancelar.");
 			scanConfirm = scanner.nextLine();

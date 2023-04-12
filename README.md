@@ -1,4 +1,4 @@
-### Projeto-Pizzaria-Java-Faculdade (em andamento)
+### Projeto-Pizzaria-Java-Faculdade (finalizado)
 
-  Projeto de uma pizzaria feita em java -> trabalho academico da minha faculdade (FAG) 
+  Projeto de uma pizzaria feita em java (básico) -> trabalho academico da minha faculdade (FAG) 
     no curso de Engenharia de software
